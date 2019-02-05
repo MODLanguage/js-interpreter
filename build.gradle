@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'antlr'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    runtime 'org.antlr:antlr4:4.7'
+}
+
+task generateParser(type:JavaExec) {
+   main = 'org.antlr.v4.Tool'
+   classpath = sourceSets.main.runtimeClasspath
+   args = ['-Dlanguage=JavaScript', './src/main/antlr/MODLParser.g4', '-o', 'static/generated-parser']
+}
+
+generateGrammarSource {
+    arguments = ['-Dlanguage=JavaScript']
+}
