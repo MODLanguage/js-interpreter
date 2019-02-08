@@ -1,68 +1,71 @@
-class ModlValue extends Object {
+class ModlValue extends Object {}
+
+type ModlStructure = ModlMap | ModlArray | ModlPair;
+
+class ModlObject extends Array<ModlStructure> {
+  toJSON() {
+    if (this.length == 1) {
+      return this[0];
     }
+    return this;
+  }
+}
 
-    class ModlStructure extends ModlValue {
-    }
+class ModlMap extends ModlValue {
+  [key: string]: ModlStructure;
+}
 
-    class ModlObject extends Array<ModlStructure> {
-        toJSON() {
-            if (this.length == 1) {
-                return this[0];
-            }
-            return this;
-        }
-    }
+class ModlArray extends Array<ModlStructure> {}
 
+class ModlPair extends ModlValue {
+  constructor(public key: string = null, public value: ModlValue = null) {
+    super();
+  }
 
-    class ModlMap extends ModlStructure {
-        [key: string] : ModlValue
-    }
+  setKeyAndValue(key: string, value: ModlValue) {
+    this.key = key;
+    this.value = value;
+  }
+}
 
-    class ModlArray extends Array<ModlValue> implements ModlStructure {
-    }
+class ConditionTest {}
 
-    class ModlPair extends ModlStructure {
-    }
+class TopLevelConditional {}
 
+class TopLevelConditionalReturn extends Array<ModlStructure> {}
 
-    class ConditionTest {
+class ValueConditional {}
 
-    }
+class ValueConditionalReturn extends Array {
+  // <ValueItem> {
+}
 
-    class TopLevelConditional {
+class ArrayConditional {}
 
-    }
+class ArrayConditionalReturn extends Array {
+  // <ValueItem> {
+}
 
-    class TopLevelConditionalReturn extends Array<ModlStructure> {
+class MapConditional {}
 
-    }
+class MapConditionalReturn extends Array {
+  // <ValueItem> {
+}
 
-    class ValueConditional {
-
-    }
-
-    class ValueConditionalReturn extends Array { // <ValueItem> {
-
-    }
-
-    class ArrayConditional {
-
-    }
-
-    class ArrayConditionalReturn extends Array { // <ValueItem> {
-
-    }
-
-    class MapConditional {
-
-    }
-
-    class MapConditionalReturn extends Array { // <ValueItem> {
-
-    }
-
-
-export { ModlObject, ModlStructure, ModlPair, ModlMap, ModlArray, ModlValue, ConditionTest,
-    TopLevelConditional, TopLevelConditionalReturn, ValueConditional, ValueConditionalReturn,
-    ArrayConditional, ArrayConditionalReturn, MapConditional, MapConditionalReturn};
-
+export {
+  ModlObject,
+  ModlStructure,
+  ModlPair,
+  ModlMap,
+  ModlArray,
+  ModlValue,
+  ConditionTest,
+  TopLevelConditional,
+  TopLevelConditionalReturn,
+  ValueConditional,
+  ValueConditionalReturn,
+  ArrayConditional,
+  ArrayConditionalReturn,
+  MapConditional,
+  MapConditionalReturn,
+};

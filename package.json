@@ -1,28 +1,38 @@
 {
-  "name": "MODL-js",
+  "name": "modl",
   "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "umd": "dist/index.umd.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw",
+    "grammar": "cd grammar; antlr4ts -visitor *.g4 -o ../src/generated",
+    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register src/tests/**/*.spec.ts"
+  },
+  "author": "Euan Goddard",
+  "license": "MIT",
   "dependencies": {
-    "@types/node": "^10.12.2",
-    "antlr4": "^4.7.1",
-    "antlr4-webpack-loader": "^0.1.1",
-    "antlr4-webpack-plugin": "0.0.1",
-    "tsc": "^1.20150623.0",
-    "typescript-map": "0.0.6",
-    "xmlhttprequest": "^1.8.0"
+    "antlr4ts": "^0.5.0-alpha.1",
+    "node-fetch": "^2.3.0",
+    "punycode": "^2.1.1"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.19",
+    "@types/node-fetch": "^2.1.4",
+    "@types/punycode": "^2.1.0",
+    "antlr4ts-cli": "^0.5.0-alpha.1",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.1.6",
-    "webpack": "^4.25.0",
-    "webpack-cli": "^3.1.2"
-  },
-  "scripts": {
-    "test": "mocha -r ts-node/register tests/**/*.test.ts",
-    "testWithCoverage": "nyc -r lcov -e .ts -x \"*.test.ts\" mocha -r ts-node/register tests/**/*.test.ts && nyc report"
+    "rollup": "^1.0.0",
+    "rollup-plugin-typescript2": "^0.18.1",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.2.2"
   }
 }
