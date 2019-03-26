@@ -1,4 +1,4 @@
-import { ModlArray, ModlMap, ModlObject } from '../src/ModlObject';
+import { ModlArray, ModlMap, ModlObject } from '../ts-src/ModlObject';
 
 var assert = require('assert');
 

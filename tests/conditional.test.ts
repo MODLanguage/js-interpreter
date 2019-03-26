@@ -1,6 +1,6 @@
-const ModlListener = require('../src/ModlListener').ModlListener;
+const ModlListener = require('../ts-src/ModlListener').ModlListener;
 
-const ModlObject = require('../src/ModlObject').ModlObject;
+const ModlObject = require('../ts-src/ModlObject').ModlObject;
 
 
 var assert = require('assert');

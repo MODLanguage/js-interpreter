@@ -1,4 +1,4 @@
-import { ModlObject } from '../src/ModlObject';
+import { ModlObject } from '../ts-src/ModlObject';
 import { ModlListener } from '../ts-src/ModlListener';
 
 const assert = require('assert');
