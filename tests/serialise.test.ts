@@ -30,9 +30,9 @@ describe('BasicParser', function() {
       // modlObject["test"]=modlMap;
       let modlArray: ModlArray = new ModlArray();
       modlArray.push(1);
-      modlArray.push({ alex: 'blah' });
+      modlArray.push({ alex: 'blah' } as any);
       modlArray.push(3);
-      let modlMap: ModlMap = { one: 1, two: { a: 'b' }, three: modlArray };
+      let modlMap: ModlMap = { one: 1, two: { a: 'b' } as any, three: modlArray };
       modlMap.four = 'four';
       let five: String = 'fiveagain';
       modlMap[five.valueOf()] = 'hehehe';
