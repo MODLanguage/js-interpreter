@@ -14,9 +14,7 @@ const antlr4 = require('antlr4/index');
 const MODLLexer = require('../gen/MODLLexer');
 const MODLParser = require('../gen/MODLParser');
 const ModlParserListener = require('../gen/MODLParserListener').MODLParserListener;
-
-// TODO: Define types
-// var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 let keys; // = {};
 let objectIndex; //  = [];
