@@ -71,13 +71,13 @@ ModlListener.parse = function(
   }
   this.modlObject = modlObject;
   keys = {};
-  var chars = new antlr4.InputStream(input);
-  var lexer = new MODLLexer.MODLLexer(chars);
-  var tokens = new antlr4.CommonTokenStream(lexer);
-  var parser = new MODLParser.MODLParser(tokens);
+  const chars = new antlr4.InputStream(input);
+  const lexer = new MODLLexer.MODLLexer(chars);
+  const tokens = new antlr4.CommonTokenStream(lexer);
+  const parser = new MODLParser.MODLParser(tokens);
   parser.buildParseTrees = true;
-  var tree = parser.modl();
-  var modl = new ModlListener(modlObject, this.loadedClasses, this.keys, this.objectIndex);
+  const tree = parser.modl();
+  const modl = new ModlListener(modlObject, this.loadedClasses, this.keys, this.objectIndex);
   antlr4.tree.ParseTreeWalker.DEFAULT.walk(modl, tree);
 
   if (modlObject[0] instanceof ModlArray) {
@@ -127,7 +127,6 @@ ModlListener.prototype.enterModl = function(ctx) {
 ModlListener.prototype.loadImport = function(location) {
   let exclamation = false;
   if (location.endsWith('!')) {
-    exclamation = true;
     location = location.substring(0, location.length - 1);
   }
   console.log('Importing from ' + location);
@@ -268,7 +267,7 @@ ModlListener.prototype.processValue = function(ctx) {
     return this.processNb_array(ctx.nb_array());
   }
   if (ctx.pair() != null) {
-    var pair = this.processPair(ctx.pair(), true);
+    const pair = this.processPair(ctx.pair(), true);
     if (pair != null) {
       return pair;
     }
@@ -296,7 +295,7 @@ ModlListener.prototype.processValue = function(ctx) {
 ModlListener.prototype.processArray = function(ctx) {
   // function enterArray(ctx) {
   // var array = [];
-  var array = new ModlArray();
+  const array = new ModlArray();
   // array of either arrayItem or nbArray
   // go through the children nodes in order and add them
   // Make either an arrayItem or nbArray as appropriate
@@ -319,9 +318,9 @@ ModlListener.prototype.processArray = function(ctx) {
 };
 
 ModlListener.prototype.processNb_array = function(ctx) {
-  var array = new ModlArray();
+  const array = new ModlArray();
   for (let arrayItemCtx of ctx.array_item()) {
-    var arrayItem = this.processArray_item(arrayItemCtx);
+    const arrayItem = this.processArray_item(arrayItemCtx);
     array.push(arrayItem);
   }
   return array;
@@ -329,7 +328,7 @@ ModlListener.prototype.processNb_array = function(ctx) {
 
 ModlListener.prototype.processArray_item = function(ctx) {
   if (ctx.array_conditional() != null) {
-    var arrayConditional = this.processArray_conditional(ctx.array_conditional());
+    const arrayConditional = this.processArray_conditional(ctx.array_conditional());
     return arrayConditional;
   }
   if (ctx.array_value_item() != null) {
@@ -555,7 +554,7 @@ ModlListener.prototype.processMap_conditional = function(ctx) {
 };
 
 ModlListener.prototype.processMap_conditional_return = function(ctx) {
-  var map_items = new MapConditionalReturn();
+  const map_items = new MapConditionalReturn();
 
   // array_item be either array_value_item or array_contional_return !
   for (let i = 0; i < ctx.map_item().length; i++) {
@@ -818,9 +817,7 @@ ModlListener.prototype.getString = function(s) {
       s = s.replace(reference, replacement);
       // s = s.replace(new RegExp(reference, "g"), replacement);
     }
-    if (references != null) {
-      references = this.getObjectReferences(s);
-    }
+    references = this.getObjectReferences(s);
   }
 
   return s;
